@@ -40,64 +40,86 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // -----------------------------------------------------
     // upload da foto - só executa se não houver erro anterior
-    // inicio do bloco
-    $foto= null;
-    // valor padrão: sem foto
+  // -----------------------------------------------------
+// Upload da foto - só executa se não houver erro anterior
+// -----------------------------------------------------
 
-    // se não teve erro de validação e o campo "foto" veio no POST 
-    if ($erro==='' && isset($_FILES['foto']) && $_FILES['foto']['error']!== UPLOAD_ERR_NO_FILE){
-        // verifica se houve erro no upload(constantes nativas UPLOAD_ERR_*)
-        if ($_FILES['foto']['erro']!== UPLOAD_ERR_OK){
-            $erro='Erro ao enviar a imagem';
-        } else{
-            // (opcional) Limite de tamanho: até 2MB
-            if ($_FILES['foto']['size']>2*1024*1024){
-                $erro='imagem muito grande(máx. 2MB)';
-            }
-            // Validar o tipo real do arquivo (para garantir que é uma image, de verdade)
-            if ($erro==''){
-                // finfo -> classe nativa do php usada para descobrir o tipo ral do arquivo
-                // (MIME= tipo do arquivo, ex: image/jgep, image/png, application/pdf, etc.)
-                $finfo= new finfo(FILEINFO_MIME_TYPE);
-                // $FILES['foto']['tmp_name'] -> caminho temporário onde o PHP guarda o arquivo
-                // antes de mover para pasta final (tipo uma area de "rascunho")
-                $mime= $finfo->file($FILES['foto']['tmp_name']);
-                // lista de tipos de imagem que o sistema aceita (extensão associada)
-                $permitidos = [
-                    'image/jgep' => 'jpg',
-                    'image/png' => 'png',
-                    'image/gif'=> 'gif'
-                ];
+$foto = null; // valor padrão: sem foto
 
-                // verifica se o tipo detectado está na lista dos permitidos
+// se não teve erro de validação e o campo "foto" veio no POST 
+if ($erro === '' && isset($_FILES['foto']) && $_FILES['foto']['error'] !== UPLOAD_ERR_NO_FILE) {
+
+    // verifica se houve erro no upload (constantes nativas UPLOAD_ERR_*)
+    if ($_FILES['foto']['error'] !== UPLOAD_ERR_OK) {
+        $erro = 'Erro ao enviar a imagem.';
+    } else {
+        // (opcional) Limite de tamanho: até 2MB
+        if ($_FILES['foto']['size'] > 2 * 1024 * 1024) {
+            $erro = 'Imagem muito grande (máx. 2MB).';
+        }
+
+        // Validar o tipo real do arquivo (para garantir que é uma image de verdade)
+        if ($erro === '') {
+            // finfo -> classe nativa do php usada para descobrir o tipo ral do arquivo
+            // (MIME= tipo do arquivo, ex: image/jgep, image/png, application/pdf, etc.) 
+            $finfo = new finfo(FILEINFO_MIME_TYPE);
+            // $FILES['foto']['tmp_name'] -> caminho temporário onde o PHP guarda o arquivo
+            // antes de mover para pasta final (tipo uma area de "rascunho")
+            $mime = $finfo->file($_FILES['foto']['tmp_name']);
+             // lista de tipos de imagem que o sistema aceita (extensão associada)
+            $permitidos = [
+                'image/jpeg' => 'jpg',
+                'image/png'  => 'png',
+                'image/gif'  => 'gif'
+            ];
+
+             // verifica se o tipo detectado está na lista dos permitidos
                 // se não estiver, mostra erro ao usuario
-                if (!isset($permitidos[$mime])){
-                    $erro= 'formato inadequado. Use jpg, png ou gif';
-                }
+            if (!isset($permitidos[$mime])) {
+                $erro = 'Formato inadequado. Use jpg, png ou gif.';
             }
-            // cria a apasta "uploads" se ainda não existir
-            if ($erro === ''){
-                $dirUpload = __DIR__ . '/uploads'; 
-                // __DIR__ mostra a pasta atual do arquivo
+        }
 
-                if (!list_dir($dirUpload)){
-                    // is_dir() verifica se a pasta existe
-                    // mkdir() cria pastas
-                    // 0755 = permissão padrão (dono pode tudo)
-                    // true= cria subpastas se for preciso
-                    mkdir($dirUpload, 0755, true);
-                }
+        // cria a pasta "uploads" se ainda não existir
+        if ($erro === '') {
+            $dirUpload = __DIR__ . '/uploads';
+         // __DIR__ mostra a pasta atual do arquivo
+
+            if (!is_dir($dirUpload)) {
+                // is_dir() verifica se a pasta existe
+                // mkdir() cria pastas
+                // 0755 = permissão padrão (dono pode tudo)
+                // true= cria subpastas se for preciso
+                mkdir($dirUpload, 0755, true);
             }
-            // começar aq
+            // gera um nome unico e add a extensão correta
+            // uniqid() cria um nome aleatorio para evitar aquivos com o mesmo nome
+            $novoNome = uniqid('img_', true) . '.' . $permitidos[$mime];
+             // caminho completo de onde o arquivo será salvo
+            $destino = $dirUpload . '/' . $novoNome;
+
+              // move_uploaded_file() -> função nativa do PhP que move o arquivo
+                // do local temporario (tmp_name) para o destino final (uploads/)
+            if (move_uploaded_file($_FILES['foto']['tmp_name'], $destino)) {
+                   // guarda apenas o caminho relativo para salvar no banco
+
+                $foto = 'uploads/' . $novoNome;
+            } else {
+                $erro = 'Falha ao salvar a imagem no servidor.';
+            }
+        }
     }
+}
+
+    // -------------------------------------termino do bloco da foto---------------------------
 
     // 3) Se não houver erro de validação, tenta salvar os dados no banco 
     if ($erro === '') {
         try {
             // SQL com placeholders nomeados (evita SQL Injection)
             // Os dois-pontos (:) indicam variáveis que serão substituidas depois
-            $sql = 'INSERT INTO cadastro (nome, email, telefone)
-                    VALUES (:nome, :email, :telefone)';
+            $sql = 'INSERT INTO cadastro (nome, email, telefone, foto)
+                    VALUES (:nome, :email, :telefone, :foto)';
 
               // db()-> função personalizada que retorna a conexão PDO com o banco de dados
     // prepare()-> método nativo do PDO que "pré-compila" o SQL no servidor 
@@ -109,6 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ':nome' => $nome,
                 ':email' => $email,
                 ':telefone' => $telefone,
+                ':foto' => $foto,
             ]);
 
             // marca que o cadastro foi salvo com sucesso
