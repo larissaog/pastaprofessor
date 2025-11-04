@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* header */
+#nav{
+    background-color:#003459;
+     font-family: "Bebas Neue", sans-serif;
+  
+}
+#title{
+       color:#C7A008 ;
+       margin-right: 20px;
+
+}
+#img{
+    height: 55px;
+}
+#items{
+    color: #C7A008;   
+}
+#itemss{
+    color: #003459;
+}
+/* </header> */
+
+
+
+/* style table*/
+
+.tabela{
+    border: 1px solid black;
+    width: 1200px;
+    height: 500px;
+
+}
+
+.pai{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 130px;
+    margin-bottom: 50px;
+    
+}
+
+.title{
+     font-family: "Bebas Neue", sans-serif;
+     margin-bottom: 30px;
+     transition: 1s;
+     
+}
+
+.title:hover{
+    transform: translateX(25px);
+
+
+}
+
+.header-table{
+    margin-bottom: 20px;
+
+}
+
+.button-table{
+    width: 150px;
+    border-radius: 10px;
+    background-color: #C7A008;
+    color: #003459;
+    border: 0;
+
+}
+
+.clear{
+    margin-left: 10px;
+    color: black;
+
+}
+
+.input{
+    width: 400px;
+    border-radius: 20px;
+}
+.new{
+    cursor:cell;
+    background-color: rgb(192, 192, 192);
+    border-radius: 20px;
+    width: 150px;
+     color: black;
+
+
+}
+
+.topo{
+    border: 7px double black;
+    font-size: 25px;
+     font-family: "Bebas Neue", sans-serif;
+     background-color: #003459;
+     color: #C7A008;
+     text-align: center;
+    
+
+}
+
+#tp-1{
+     border: 1px solid black;
+     width: 25px;
+     text-align: center;
+      width: 40px;
+      background-color: rgb(192, 192, 192);
+   
+      
+    
+     
+
+}
+
+#tp-2{
+    border: 1px solid black;
+}
+
+.editores1{
+    text-decoration: none;
+    color: white;
+    background-color: #003459;
+    border-radius: 5px;
+   padding: 3px;
+}
+.editores{
+    text-decoration: none;
+    color: black;
+
+}
+
+#tp-3{
+     border: 1px solid black;
+     width: 25px;
+     text-align: center;
+      width: 80px;
+      background-color: rgb(192, 192, 192);
+}
+
+
+
+/* <footer> */
+
+
+.footer{
+    width: 100%;
+    height: 100px;
+    background-color: black;
+}
+
+.redes{
+    display: flex;
+    gap: 15px;
+    margin-left: 10px;
+
+}
+
+.im-footer{
+    filter: invert(100%);
+}
+
+.text{
+    color: white;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+/* </footer> */
+
+
+
+
+
+
+/* corres
+ Dourado envelhecido (#C7A008)
+Azul petróleo (#003459)    */
