@@ -172,6 +172,12 @@
     margin-top: 5px;
     margin-left: 5px;
 }
+
+.input-footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 /* </footer> */
 
 
