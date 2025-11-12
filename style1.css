@@ -1,0 +1,53 @@
+/* .formulario{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 200px;
+    border: 1px solid black;
+    height: 400px;
+    
+    margin-bottom: 100px;
+
+} */
+
+label{
+    margin: 10px;
+    
+}
+
+#input{
+    width: 400px;
+    border: 2px solid #003459;
+    border-radius: 10px;
+}
+
+.formulario{
+  margin-top: 200px;
+  margin-bottom: 200px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.button-envair{
+    width: 150px;
+    margin-left: 70px;
+    border-radius: 5px;
+    color: white;
+    background-color: #003459;
+    
+}
+
+.button-envair:hover{
+    transform: translateY(-10px);
+    cursor: pointer;
+    transition: 2s;
+}
+
+.title {
+    text-align: center;
+    margin-top: 100px;
+    
+}
