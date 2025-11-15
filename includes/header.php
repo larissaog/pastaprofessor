@@ -37,21 +37,13 @@
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
         <li class="nav-item">
-          <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
+          <a class="nav-link active text-light" aria-current="page" href="./index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-light" href="#">Cadastro</a>
+          <a class="nav-link text-light" href="">Cadastro</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            utilidades
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item text-light" href="#">Action</a></li>
-            <li><a class="dropdown-item text-light" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider text-light"></li>
-            <li><a class="dropdown-item text-light" href="#">Something else here</a></li>
-          </ul>
+       <li class="nav-item">
+          <a class="nav-link text-light" href="../sistemaLogin/login.php">Login</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled text-light" aria-disabled="true">soluções</a>

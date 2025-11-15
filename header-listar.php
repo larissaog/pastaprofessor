@@ -23,13 +23,13 @@
 </nav>
 <ul class="nav justify-content-center d-flex gap-4 mt-1" >
   <li class="nav-item" >
-    <a class="nav-link active" aria-current="page" href="#" id="items" >Home</a>
+    <a class="nav-link active" aria-current="page" href="./index.php" id="items" >Home</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#" id="items">Info</a>
+    <a class="nav-link" href="../sistemaLogin/login.php" id="items">Login</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#" id="items">Cadastro</a>
+    <a class="nav-link" href="./formulario.php" id="items">Cadastro</a>
   </li>
   <li class="nav-item">
     <a class="nav-link disabled" aria-disabled="true" id="itemss">Disabled</a>

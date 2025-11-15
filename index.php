@@ -37,7 +37,7 @@ $registros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <?php
-    include __DIR__. '/header-listar.php';
+    include __DIR__. '/header-index.php';
 
 ?>
 <!DOCTYPE html>
@@ -59,7 +59,7 @@ $registros = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <form method="get" class="header-table">
         <input type="text" name="busca" placeholder="Pesquise Info." value="<?= htmlspecialchars($busca) ?>" class="input">
         <button type="submit" class="button-table">Buscar</button>
-        <a href="listar.php" class="clear">Limpar</a>
+        <a href="index.php" class="clear">Limpar</a>
     </form>
         <!-- Link para cadastrar um novo registro -->
 
@@ -119,7 +119,7 @@ $registros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <?php
 
 // dir significa o diretorio que ele vai seguir
-    include __DIR__. '/footer-listar.php';
+    include __DIR__. '/footer-index.php';
 
 ?>
 

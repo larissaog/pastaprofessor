@@ -33,7 +33,7 @@
         <label for="">Foto:</label>
         <input type="file" name=foto id=foto><br><br>
         <!-- Button trigger modal -->
-<button type="button" class="button-envair" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="submit" class="button-envair" data-bs-toggle="modal" data-bs-target="#exampleModal">
   enviar
 </button>
 
@@ -61,6 +61,9 @@
         <button class="button-envair" type="reset">Limpar</button>
     </form>
 
+    </div>
+    <div class="login">
+      <a href="./sistemaLogin/login.php">Login</a>
     </div>
        
 

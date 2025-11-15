@@ -8,7 +8,7 @@ require __DIR__ . '/includes/db.php';
 
 $id = (int)($_GET['id'] ?? 0);
 if ($id <= 0){
-    header('Location: listar.php');
+    header('Location: index.php');
     exit;
 }
 // fim conexão e captura do ID
@@ -24,7 +24,7 @@ $registro = $stmt->fetch(PDO::FETCH_ASSOC);
 // Se não encontrou o registro, volta para a lista
 
 if (!$registro){
-    header('Location: listar.php');
+    header('Location: index.php');
     exit;
 }
 
@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             }
             $ok = true;
             // redireciona para a lista após atualizar (fluxo que você quer)
-            header('Location: listar.php?msg=atualizado');
+            header('Location: index.php?msg=atualizado');
             exit;
         }
         catch (PDOException $e){
@@ -199,7 +199,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
      <input type="hidden" name="foto_atual" value="<?=htmlspecialchars($fotoAtual ?? '') ?>">
      <p>
         <button type="submit">Salvar alteracoes</button>
-        <a href="listar.php">Cancelar</a>
+        <a href="index.php">Cancelar</a>
      </p>
 </form>
 

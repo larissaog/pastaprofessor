@@ -9,7 +9,7 @@ $id= (int)($_GET['id'] ?? '');
 
 // se ID for inválido (zero ou vazio), redireciona para lista
 if ($id <=0){
-    header('Location: listar.php');
+    header('Location: index.php');
     exit;
 }
 // fim - Conexão com o banco e verificação do ID
@@ -24,7 +24,7 @@ $registro = $stmt -> fetch (PDO::FETCH_ASSOC);
 // Se não encontrar nada. volte para a lista
 
 if (!$registro){
-    header('Location: listar.php');
+    header('Location: index.php');
     exit;
 }
 // fim busca do registro
@@ -35,12 +35,12 @@ try{
     }
 
     // comando SQL para excluir o registro
-    $sql= 'DELETE * FROM cadastro WHERE id= :id';
+    $sql= 'DELETE  FROM cadastro WHERE id= :id';
     $stmt = db()->prepare($sql);
     $stmt->execute([':id'=> $id]);
 
-    // redireciona de volta para listar após excluir
-    header('Location: listar.php?msg=excluido');
+    // redireciona de volta para index após excluir
+    header('Location: index.php?msg=excluido');
     exit;
 } 
 catch (PDOException $e){
